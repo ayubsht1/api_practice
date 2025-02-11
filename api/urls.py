@@ -1,10 +1,7 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import TaskViewSet  
-
-router = DefaultRouter()
-router.register(r'tasks', TaskViewSet, basename='task')
+from .views import ToDoListCreateView, ToDoDetailView 
 
 urlpatterns = [
-    path('', include(router.urls)),  
+    path('todos/', ToDoListCreateView.as_view(), name='todo-list-create'),
+    path('todos/<int:pk>/', ToDoDetailView.as_view(), name='todo-detail'),
 ]
